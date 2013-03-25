@@ -269,11 +269,6 @@ public class Registration  {
 	// check with the server and send status code accordingly
 	public void register ( ) {
 		
-		// generate headers
-		final List < NameValuePair > headerNameValuePair = new ArrayList < NameValuePair > ();
-		headerNameValuePair.add(  new NameValuePair( "appId", "12121" ) );
-		headerNameValuePair.add(  new NameValuePair( "key", "U2FsdGVkX19K9JCDn7vR1F" ) );
-		
 		// generate params 
 		final List < NameValuePair > paramNameValuePair = new ArrayList < NameValuePair > ();
 		paramNameValuePair.add(  new NameValuePair( "first_name", vFirstName ) );
@@ -290,15 +285,17 @@ public class Registration  {
 
 			@Override
 			public void run() {
-				HttpRequest request = new HttpRequest( Keys.REGISTRATION_URL, headerNameValuePair, Constants.POST_METHOD, paramNameValuePair );
+				HttpRequest request = new HttpRequest( Keys.REGISTRATION_URL, null, Constants.POST_METHOD, paramNameValuePair );
 				try {
 					final Object result = request.send();
+					final int status_code = request.getStatusCode();
+					
 					Constants.handler.post( new Runnable () {
 
 						@Override
 						public void run() {
 							Message msg = new Message ();
-							msg.what = 1;
+							msg.what = status_code;
 							msg.obj = result;
 							Constants.appInstance.callUpdateOnFragments( msg );
 						}

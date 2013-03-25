@@ -11,6 +11,9 @@ public final class Keys {
 	
 	public static final boolean LOG_SHOW = true;
 
+	public static final String KEY = "U2FsdGVkX19K9JCDn7vR1F";
+	public static String APPID = "12345";
+	
 	// testing urls
 	public static final String REGISTRATION_URL = "http://gift360.pairserver.com/gift360/rewardengine/testengine/feeds/register";
 	public static final String LOGIN_URL = "http://gift360.pairserver.com/gift360/rewardengine/testengine/feeds/login";

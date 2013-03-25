@@ -128,6 +128,14 @@ public class LoginFragment extends MainFragment implements OnClickListener {
 	@Override
 	public void onUpdate( Message msg ) {
 		System.out.println ( "Message ========================================"+ msg );
+
+		if ( msg != null ) {
+			if ( msg.what == -1 ) {
+				Toast.makeText ( getActivity(), msg.obj.toString(), Toast.LENGTH_SHORT ).show();
+			} else {
+				// start the product fragment
+			}
+		}
 	}
 
 

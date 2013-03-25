@@ -9,7 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:text="Menu" />
+        android:text="@string/menu" 
+        android:visibility="gone"/>
     
      <Button
         android:id="@+id/back"
@@ -24,7 +25,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:visibility="gone"
         android:text="@string/forYou" />
+    
     <Button
         android:id="@+id/skip"
         android:layout_width="wrap_content"
@@ -37,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="RC Label icon"
+        android:text="@string/header_text"
         android:layout_margin="5dip"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 

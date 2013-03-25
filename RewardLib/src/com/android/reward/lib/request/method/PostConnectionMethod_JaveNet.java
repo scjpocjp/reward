@@ -14,6 +14,8 @@ import java.util.zip.GZIPInputStream;
 
 import org.apache.commons.httpclient.NameValuePair;
 
+import com.android.reward.lib.util.Constants;
+import com.android.reward.lib.util.Keys;
 import com.android.reward.lib.util.Print;
 
 public class PostConnectionMethod_JaveNet {
@@ -49,6 +51,10 @@ public class PostConnectionMethod_JaveNet {
 				urlConnection.addRequestProperty(  nameValuePair.getName(), nameValuePair.getValue() );
 			}
 		}
+		
+		urlConnection.addRequestProperty(  Constants.KEY, Keys.KEY );
+		urlConnection.addRequestProperty(  Constants.APPID, Keys.APPID );
+		
 
 
 	}
@@ -114,13 +120,12 @@ public class PostConnectionMethod_JaveNet {
 
 				if (e.getMessage().contains("authentication challenge")) {
 					STATUS_CODE = HttpURLConnection.HTTP_UNAUTHORIZED;
-
 				} 
 			}
 
 
 
-
+			System.out.println ( " STATUS CODE =================================="+ urlConnection.getResponseCode() );
 
 			if(STATUS_CODE == 401){
 
@@ -151,6 +156,7 @@ public class PostConnectionMethod_JaveNet {
 				inputStream.close();
 				inputStream = null;
 
+				
 				Print.getInstance().show( "SBB ========================================="+ sb .toString() );
 
 				return new StringBuffer(sb.toString());

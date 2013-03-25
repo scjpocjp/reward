@@ -1,11 +1,10 @@
 package com.android.reward.lib.util;
 
-import com.android.reward.lib.app.RewardLibApplication;
-
-import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 import android.os.IBinder;
+
+import com.android.reward.lib.app.RewardLibApplication;
 
 public class Constants {
 
@@ -16,10 +15,22 @@ public class Constants {
 	
 	public static boolean isCurrent = false;
 	
+	public static final String KEY = "key";
+	public static final String APPID = "appId";
+	
 	public static Handler handler = null;
 	public static Context context = null;
 	public static IBinder mBinder = null;
 	public static RewardLibApplication appInstance = null;
+	
+	public static final String IS_LOGGED_IN = "isLoggedIn";
+	
+	public static String vUserId = null;
+	public static String vFirstName = null;
+	public static String vLastName = null;
+	public static String vPhone = null;
+	public static String vPoints = null;
+	
 	
 	
 	

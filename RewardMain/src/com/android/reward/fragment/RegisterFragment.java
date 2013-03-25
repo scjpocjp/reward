@@ -138,6 +138,9 @@ public class RegisterFragment extends MainFragment implements OnClickListener {
 		System.out.println ( "Message ========================================"+ msg );
 		
 		
+		if ( msg.what == 200 ) {
+			// start the product fragment
+		}
 	}
 
 }

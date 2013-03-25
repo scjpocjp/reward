@@ -1,5 +1,17 @@
 package com.android.reward.lib.validation;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.httpclient.NameValuePair;
+
+import android.os.Message;
+
+import com.android.reward.lib.exception.RequestRepeatException;
+import com.android.reward.lib.parser.SAXParsing;
+import com.android.reward.lib.request.HttpRequest;
+import com.android.reward.lib.util.Constants;
+import com.android.reward.lib.util.Keys;
 import com.android.reward.lib.util.Msg;
 import com.android.reward.lib.util.Print;
 import com.android.reward.lib.util.Util;
@@ -94,6 +106,48 @@ public class Login  {
 	public void login () {
 		
 		Print.getInstance().show( " Login --------------------------" );
+		
+				// generate params 
+				final List < NameValuePair > paramNameValuePair = new ArrayList < NameValuePair > ();
+				paramNameValuePair.add(  new NameValuePair( "emailId", email ) );
+				paramNameValuePair.add(  new NameValuePair( "password", password ) );
+				
+				Runnable r = new Runnable () {
+
+					@Override
+					public void run() {
+						HttpRequest request = new HttpRequest( Keys.LOGIN_URL, null, Constants.POST_METHOD, paramNameValuePair );
+						try {
+							final Object result = request.send();
+							final SAXParsing parsing = new SAXParsing ( result, SAXParsing.LOGIN_PARSER );
+							
+							Constants.handler.post( new Runnable () {
+
+								@Override
+								public void run() {
+									Message msg = new Message ();
+									msg.what = parsing.getStatus();
+									if ( parsing.getStatus() == -1 ) {
+										msg.obj = parsing.getReason();
+									} else {
+										msg.obj = result;
+									}
+									Constants.appInstance.callUpdateOnFragments( msg );
+								}
+								
+							});
+						} catch (RequestRepeatException e) {
+							Print.getInstance().show(e);
+						}
+						
+					}
+					
+				};
+				
+				Thread th = new Thread ( r );
+				th.start();
+				
+
 	}
 	
 	
