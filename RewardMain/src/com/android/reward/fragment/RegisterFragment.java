@@ -14,6 +14,7 @@ import com.android.reward.R;
 import com.android.reward.application.RewardApplication;
 import com.android.reward.lib.util.Msg;
 import com.android.reward.lib.util.Print;
+import com.android.reward.lib.util.Util;
 import com.android.reward.lib.validation.Registration;
 
 public class RegisterFragment extends MainFragment implements OnClickListener {
@@ -113,7 +114,10 @@ public class RegisterFragment extends MainFragment implements OnClickListener {
 			return;
 		}
 		
-		register.register( );
+		if(Util.isInternetAvailable())
+			register.register( );
+		else
+			Toast.makeText(RegisterFragment.this.getActivity(), getString(R.string.no_network), Toast.LENGTH_SHORT).show();
 	}
 	
 	/**
