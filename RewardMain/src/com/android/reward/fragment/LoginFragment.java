@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.view.ViewPager.LayoutParams;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.PopupWindow;
@@ -25,6 +27,7 @@ public class LoginFragment extends MainFragment implements OnClickListener {
 	private Login login = null;
 	private EditText email = null;
 	private EditText password = null;
+	 PopupWindow forgotPassPopup;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -39,14 +42,19 @@ public class LoginFragment extends MainFragment implements OnClickListener {
 		v.findViewById( R.id.forgot_password ).setOnClickListener( this );
 		v.findViewById( R.id.not_member ).setOnClickListener( this );
 		v.findViewById( R.id.login ).setOnClickListener( this );
+		
 
 		email = ( EditText ) (v.findViewById( R.id.email ));
 		password = ( EditText ) (v.findViewById( R.id.password ));
 
 		login = new Login ();
+		
+		
 		return v;
 
 	}
+	
+	
 
 	@Override
 	public void onClick ( View v ) {
@@ -60,6 +68,12 @@ public class LoginFragment extends MainFragment implements OnClickListener {
 		break;
 
 		case R.id.login : login ();
+		break;
+		
+		case R.id.btnResetPassword : dismissForgotPassPopup();
+		break;
+		
+		case R.id.llForgotPassParent : dismissForgotPassPopup();
 		break;
 		}
 	}
@@ -96,19 +110,23 @@ public class LoginFragment extends MainFragment implements OnClickListener {
 
 		View forgotPassView = LayoutInflater.from( getActivity() ).inflate(R.layout.forgot_password_popup, null);
 
-		final PopupWindow forgotPassPopup = new PopupWindow(forgotPassView, LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT, true);
+		forgotPassPopup = new PopupWindow(forgotPassView, LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT, true);
 		forgotPassPopup.setAnimationStyle(android.R.style.Animation_Dialog);
 		forgotPassPopup.showAtLocation(forgotPassView, Gravity.CENTER, 0, 0); 
-		forgotPassView.findViewById(R.id.btnResetPassword).setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				forgotPassPopup.dismiss();
-			}
-		});
+		forgotPassView.findViewById(R.id.btnResetPassword).setOnClickListener(LoginFragment.this);
+		
+		forgotPassView.findViewById(R.id.llForgotPassParent).setOnClickListener(LoginFragment.this);
 
 	}
 
+	/**
+	 * Close forgot password pop-up manually
+	 */
+	public void dismissForgotPassPopup(){
+		if(forgotPassPopup.isShowing()){
+			forgotPassPopup.dismiss();
+		}
+	}
 	/**
 	 * Redirecting to registration page
 	 * Device  and tablet functionality will be different 
