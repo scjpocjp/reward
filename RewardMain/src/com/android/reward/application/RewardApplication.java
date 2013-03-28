@@ -32,8 +32,6 @@ public class RewardApplication extends RewardLibApplication {
 	private static FragmentManager fragmentManager ;
 	private static FragmentManagerUtil fragmentManagerUtil ;
 
-	private static ThreadPoolExecutor threadPoolExecutor;
-
 	public static DatabaseWrapper databaseWrapper;
 
 	private static Handler handler = new Handler ();
@@ -62,9 +60,7 @@ public class RewardApplication extends RewardLibApplication {
 		return fragmentManagerUtil;
 	}
 
-	public static ThreadPoolExecutor getThreadPoolExecutor () {
-		return threadPoolExecutor;
-	}
+	
 
 	
 
@@ -115,14 +111,6 @@ public class RewardApplication extends RewardLibApplication {
 	}
 
 
-	class PlayUpRejectedExecutionHandler implements RejectedExecutionHandler {
-
-		@Override
-		public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
-
-		}
-
-	}
 
 
 	/**
@@ -133,7 +121,6 @@ public class RewardApplication extends RewardLibApplication {
 		System.out.println ( " 0000000000000000000000000000000000000000000000000000000000000000 ");
 		pollMangar = new PollManager();
 		fragmentManagerUtil = new FragmentManagerUtil();
-		threadPoolExecutor = new ThreadPoolExecutor ( 5, 5, 10, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>( 100  ), new PlayUpRejectedExecutionHandler ( ) );
 
 
 		//String deviceId = Settings.System.getString(getContentResolver(),Settings.System.ANDROID_ID);

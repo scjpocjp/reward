@@ -18,13 +18,12 @@ import com.android.reward.lib.util.Print;
 import com.android.reward.lib.util.Util;
 
 
-public class Login  {
+public class ForgotPassword  {
 
 	
 	private String email = null;
-	private String password = null;
-    
-	public Login ( ) {
+	
+	public ForgotPassword ( ) {
 	}
 	
 	
@@ -61,66 +60,29 @@ public class Login  {
 		} 
 		return msg;
 	}
-
-
-	public String getPassword() {
-		return password;
-	}
-
-
-	public Msg setPassword(String password) {
-		this.password = password;
-		
-		Msg msg = new Msg ();
-		
-		if ( password == null ) {
-			
-			msg.setiStatusCode( -1 );
-			msg.setvMsg( "Password cannot be null" );
-		
-		} else if  ( password != null && password.trim().length() == 0 ) {
-			
-			msg.setiStatusCode( -1 );
-			msg.setvMsg( "Password cannot be blank " );
-		
-		} else if ( password.trim().length() < 6 ) {
-			
-			msg.setiStatusCode( -1 );
-			msg.setvMsg( "Min 6 character password" );
-		
-		} else  {
-			
-			msg.setiStatusCode( 1 );
-			msg.setvMsg( "Password is appropriate " );
-		}
-		
-		return msg;
-	}
-
-
+	
 	// check if  email is valid or not 
 	public boolean isValidEmail ( ) {
 		return new Util ().isValidEmail ( email );
 	}
 	
 	// check with the server and send status code accordingly
-	public void login () {
+	public void forgotPassword () {
 		
-		Print.getInstance().show( " Login --------------------------" );
+		Print.getInstance().show( " forgotPassword --------------------------" );
 		
 				// generate params 
 				final List < NameValuePair > paramNameValuePair = new ArrayList < NameValuePair > ();
-				paramNameValuePair.add(  new NameValuePair( "emailId", email ) );
-				paramNameValuePair.add(  new NameValuePair( "password", password ) );
+				paramNameValuePair.add(  new NameValuePair( "email", email ) );
 				
 				Runnable r = new Runnable () {
 
 					@Override
 					public void run() {
-						HttpRequest request = new HttpRequest( Keys.LOGIN_URL, null, Constants.POST_METHOD, paramNameValuePair );
+						HttpRequest request = new HttpRequest( Keys.FORGOT_PASSWORD_URL, null, Constants.POST_METHOD, paramNameValuePair );
 						try {
 							final Object result = request.send();
-							final SAXParsing parsing = new SAXParsing ( result, SAXParsing.LOGIN_PARSER );
+							final SAXParsing parsing = new SAXParsing ( result, SAXParsing.FORGOT_PASSWORD_PARSER );
 							
 							Constants.handler.post( new Runnable () {
 
@@ -128,9 +90,7 @@ public class Login  {
 								public void run() {
 									Message msg = new Message ();
 									msg.what = parsing.getStatus();
-									if ( parsing.getStatus() == -1 ) {
-										msg.obj = parsing.getReason();
-									}
+									msg.obj = parsing.getReason();
 									Constants.appInstance.callUpdateOnFragments( msg );
 								}
 								

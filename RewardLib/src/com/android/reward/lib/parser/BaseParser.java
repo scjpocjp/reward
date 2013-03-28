@@ -17,7 +17,7 @@ public class BaseParser extends DefaultHandler {
 
 		if ( qName.equalsIgnoreCase( "status" ) ) {
 			isStatus = true;
-		} else if ( qName.equalsIgnoreCase( "reason" ) ) {
+		} else if ( qName.equalsIgnoreCase( "reason" ) || qName.equalsIgnoreCase( "message" ) ) {
 			isReason = true;
 		}
 
@@ -27,7 +27,7 @@ public class BaseParser extends DefaultHandler {
 			String qName) throws SAXException {
 		if ( qName.equalsIgnoreCase( "status" ) ) {
 			isStatus = false;
-		} else if ( qName.equalsIgnoreCase( "reason" ) ) {
+		} else if ( qName.equalsIgnoreCase( "reason" ) || qName.equalsIgnoreCase( "message" ) ) {
 			isReason = false;
 		}
 	}

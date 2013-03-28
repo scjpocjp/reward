@@ -9,6 +9,7 @@ import android.os.Message;
 
 import com.android.reward.lib.app.RewardLibApplication;
 import com.android.reward.lib.exception.RequestRepeatException;
+import com.android.reward.lib.parser.SAXParsing;
 import com.android.reward.lib.request.HttpRequest;
 import com.android.reward.lib.util.Constants;
 import com.android.reward.lib.util.Keys;
@@ -288,15 +289,17 @@ public class Registration  {
 				HttpRequest request = new HttpRequest( Keys.REGISTRATION_URL, null, Constants.POST_METHOD, paramNameValuePair );
 				try {
 					final Object result = request.send();
-					final int status_code = request.getStatusCode();
+					final SAXParsing parsing = new SAXParsing ( result, SAXParsing.REGISTER_PARSER );
 					
 					Constants.handler.post( new Runnable () {
 
 						@Override
 						public void run() {
 							Message msg = new Message ();
-							msg.what = status_code;
-							msg.obj = result;
+							msg.what = parsing.getStatus();
+							if ( parsing.getStatus() == -1 ) {
+								msg.obj = parsing.getReason();
+							}
 							Constants.appInstance.callUpdateOnFragments( msg );
 						}
 						
@@ -308,11 +311,7 @@ public class Registration  {
 			}
 			
 		};
-		
-		Thread th = new Thread ( r );
-		th.start();
-		
-		
+		RewardLibApplication.getThreadPoolExecutor().execute( r );
 	}
 	
 	

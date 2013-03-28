@@ -140,10 +140,13 @@ public class RegisterFragment extends MainFragment implements OnClickListener {
 	@Override
 	public void onUpdate( Message msg ) {
 		System.out.println ( "Message ========================================"+ msg );
-		
-		
-		if ( msg.what == 200 ) {
-			// start the product fragment
+
+		if ( msg != null ) {
+			if ( msg.what == -1 ) {
+				Toast.makeText ( getActivity(), msg.obj.toString(), Toast.LENGTH_SHORT ).show();
+			} else {
+				// start the product fragment
+			}
 		}
 	}
 
