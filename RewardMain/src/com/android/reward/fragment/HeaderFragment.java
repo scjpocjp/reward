@@ -93,7 +93,9 @@ public class HeaderFragment extends MainFragment implements OnClickListener {
 	 * Sliding the menu 
 	 * */
 	private void menu () {
-		
+		Print.getInstance().show ( " menu -------------------------------");
+		( ( MainActivity ) getActivity() ).showHideMenu();
+	
 	}
 	
 	
@@ -131,6 +133,7 @@ public class HeaderFragment extends MainFragment implements OnClickListener {
 
 		// skip to home activity where product related information is there
 		Print.getInstance().show ( " Skip -------------------------------");
+		( ( MainActivity ) getActivity() ).showHideMenu();
 	}
 
 	
