@@ -143,7 +143,10 @@ public class LoginFragment extends MainFragment implements OnClickListener {
 				return;
 			}
 			
-			forgotPassword.forgotPassword();
+			if(Util.isInternetAvailable())
+				forgotPassword.forgotPassword();
+			else
+				Toast.makeText(LoginFragment.this.getActivity(),getString(R.string.no_network),Toast.LENGTH_SHORT).show();
 			
 			forgotPassDialog.dismiss();
 		}

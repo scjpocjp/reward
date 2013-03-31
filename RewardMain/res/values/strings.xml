@@ -46,6 +46,10 @@
     <string name="reset_password">Reset Password</string>
     <!-- End -->
 
-    
-    
+    <!--  Landing Screen -->
+    <string name="advance_search">Adv\n Search</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="powered_by_reward">Powered by Reward360</string>
+    <!-- End -->
 </resources>
