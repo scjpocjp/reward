@@ -1,6 +1,8 @@
 package com.android.reward.fragment;
 
 import com.android.reward.R;
+import com.android.reward.application.RewardApplication;
+import com.android.reward.lib.util.Print;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +18,7 @@ public class HomeScreenFragment extends MainFragment implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 	}
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.home_screen, container, false);
@@ -30,27 +32,32 @@ public class HomeScreenFragment extends MainFragment implements OnClickListener{
 	public void onClick(View v) {	
 		switch (v.getId()) {
 		case R.id.btnSignIn: signIn();
-			 	  break;
+		break;
 		case R.id.btnSignUp: signUp();
-	 	  break;
+		break;
 
 		default:
 			break;
 		}
-		
+
 	}
-	
+
 	/**
 	 * Sign-In implementation
 	 */
 	private void signIn(){
-		
+		// skip to home activity where product related information is there
+		Print.getInstance().show ( " signIn -------------------------------");
+		RewardApplication.getFragmentManagerUtil().setFragment( "LoginFragment", R.id.content );
+
 	}
 	/**
 	 * Sign-Up implementation
 	 */
 	private void signUp(){
-		
+		// skip to home activity where product related information is there
+		Print.getInstance().show ( " signUp -------------------------------");
+		RewardApplication.getFragmentManagerUtil().setFragment( "RegisterFragment", R.id.content );
 	}
 
 }

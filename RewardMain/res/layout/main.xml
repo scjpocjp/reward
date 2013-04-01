@@ -5,7 +5,7 @@
 
     <LinearLayout
         android:id="@+id/menu"
-        android:layout_width="200dip"
+        android:layout_width="250dip"
         android:layout_height="fill_parent"
         android:orientation="vertical" 
         android:visibility="gone">
