@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Search">
+        <attr name="searchLabel" format="string"  />
+        <attr name="searchEditText" format="string" />
+    </declare-styleable>
+</resources>

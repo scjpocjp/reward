@@ -17,6 +17,7 @@ public class SAXParsing {
 	public static final int LOGIN_PARSER = 0;
 	public static final int REGISTER_PARSER = LOGIN_PARSER + 1;
 	public static final int FORGOT_PASSWORD_PARSER = REGISTER_PARSER + 1;
+<<<<<<< HEAD
 	public static final int BANNER_PARSER = FORGOT_PASSWORD_PARSER + 1;
 	public static final int ACC_POINTS_PARSER = BANNER_PARSER + 1;
 	public static final int HIS_ORDER_PARSER = ACC_POINTS_PARSER + 1;
@@ -32,6 +33,9 @@ public class SAXParsing {
 	
 	
 	
+=======
+	public static final int CHANGE_PASSWORD_PARSER = FORGOT_PASSWORD_PARSER + 1;
+>>>>>>> Change Password + Search
 
 
 
@@ -63,9 +67,15 @@ public class SAXParsing {
 			saxParser.parse( is, baseParser );
 			break;
 			
+<<<<<<< HEAD
 			case BANNER_PARSER : baseParser = new BannerParser(); 
 			is.setCharacterStream(new StringReader( (( StringBuffer ) result).toString() ) );
 			saxParser.parse( is, ( BannerParser ) baseParser );
+=======
+			case CHANGE_PASSWORD_PARSER : baseParser = new ChangePasswordParser(); 
+			is.setCharacterStream(new StringReader( (( StringBuffer ) result).toString() ) );
+			saxParser.parse( is, ( ChangePasswordParser ) baseParser );
+>>>>>>> Change Password + Search
 			break;
 
 			}
