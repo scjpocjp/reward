@@ -52,7 +52,7 @@ public class MainActivity extends FragmentActivity {
 			int backStackEntryCount = RewardApplication.getFragmentManager().getBackStackEntryCount();
 			Print.getInstance().show ( " MainActivity :: backStackEntryCount ----- "+backStackEntryCount);
 			// 2 size tends to HeaderFragment
-			if ( backStackEntryCount <= 2 ) {
+			if ( backStackEntryCount <= 3 ) {
 				finish ();
 			}
 

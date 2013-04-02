@@ -16,7 +16,7 @@ public final class Keys {
 	public static final String APPID_KEY = "application_id";
 	
 	// testing urls
-<<<<<<< HEAD
+
 	
 	public static final String BASE_URL = "http://gift360.pairserver.com/gift360/rewardengine/testengine/feeds/";
 	public static final String REGISTRATION_URL = BASE_URL + "register";
@@ -40,15 +40,8 @@ public final class Keys {
 	
 	
 	
-			 
-	
-=======
-	public static final String BASE_URL = "http://gift360.pairserver.com/gift360/rewardengine/testengine/feeds/";
-	public static final String REGISTRATION_URL = BASE_URL+"register";
-	public static final String LOGIN_URL = BASE_URL+"login";
-	public static final String FORGOT_PASSWORD_URL = BASE_URL+"forgot_password";
-	public static final String CHANGE_PASSWORD_URL = BASE_URL+"change_password";
->>>>>>> Change Password + Search
+
+
 	
 	
 	
