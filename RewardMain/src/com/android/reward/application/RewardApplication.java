@@ -4,11 +4,7 @@
  */
 package com.android.reward.application;
 
-import java.util.concurrent.ArrayBlockingQueue;
-
-import java.util.concurrent.RejectedExecutionHandler;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.UUID;
 
 import android.content.res.Resources.NotFoundException;
 import android.os.Handler;
@@ -18,11 +14,12 @@ import android.support.v4.app.FragmentManager;
 import android.widget.Toast;
 
 import com.android.reward.fragmanager.FragmentManagerUtil;
+import com.android.reward.lib.app.RewardLibApplication;
 import com.android.reward.lib.database.DatabaseWrapper;
 import com.android.reward.lib.util.Constants;
 import com.android.reward.lib.util.Keys;
-import com.android.reward.lib.app.RewardLibApplication;
 import com.android.reward.lib.util.PollManager;
+import com.android.reward.lib.util.PreferenceManagerUtil;
 
 
 public class RewardApplication extends RewardLibApplication {
@@ -33,6 +30,7 @@ public class RewardApplication extends RewardLibApplication {
 	private static FragmentManagerUtil fragmentManagerUtil ;
 
 	public static DatabaseWrapper databaseWrapper;
+	
 
 	private static Handler handler = new Handler ();
 
@@ -93,6 +91,8 @@ public class RewardApplication extends RewardLibApplication {
 		if ( Constants.handler == null ) {
 			Constants.handler = new Handler (); 
 		}
+		
+		getApplicationId ();
 		initialise ();
 		
 		
@@ -110,7 +110,18 @@ public class RewardApplication extends RewardLibApplication {
 
 	}
 
-
+	
+	/**
+	 *  Assigning unique id to applicatio as an identifier to server 
+	 */
+	private void getApplicationId () {
+		PreferenceManagerUtil preferences = new PreferenceManagerUtil();
+		Keys.APPID = preferences.get( Keys.APPID_KEY,  null );
+		if ( Keys.APPID == null ) {
+			Keys.APPID = UUID.randomUUID().toString();
+			preferences.set( Keys.APPID_KEY, Keys.APPID );
+		}
+	}
 
 
 	/**

@@ -66,7 +66,8 @@ public class Constants {
 	
 	
 	
-	
+	// user related data 
+	public static String emailId = null;
 	
 	
 }

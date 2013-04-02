@@ -130,6 +130,8 @@ public class Login  {
 									msg.what = parsing.getStatus();
 									if ( parsing.getStatus() == -1 ) {
 										msg.obj = parsing.getReason();
+									} else {
+										Constants.emailId = email;
 									}
 									Constants.appInstance.callUpdateOnFragments( msg );
 								}

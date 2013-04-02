@@ -125,7 +125,7 @@ public class HttpRequest  {
 		setIsRepeatRequest();
 	}
 
-	public HttpRequest(final String url, final String requestData, final int TYPE_METHOD ) {
+	/*public HttpRequest(final String url, final String requestData, final int TYPE_METHOD ) {
 
 		this ();
 
@@ -141,21 +141,7 @@ public class HttpRequest  {
 		setIsRepeatRequest();
 	}
 
-	public HttpRequest( final String url, boolean isHref ,final int TYPE_METHOD ) {
-
-		this ();
-
-		this.url = url;
-
-		this.METHOD_TYPE = TYPE_METHOD;
-
-		this.parseType = -1;
-		this.refreshData = null;
-
-		setIsRepeatRequest();
-	}
-
-	public HttpRequest(final String url,Boolean isHref, final String requestData, final int TYPE_METHOD,String setContentType ) {
+	public HttpRequest(final String url, final String requestData, final int TYPE_METHOD, String setContentType ) {
 
 		this ();
 		this.url = url;
@@ -168,21 +154,6 @@ public class HttpRequest  {
 
 		setIsRepeatRequest();
 	}
-
-	public HttpRequest(final String url, final String requestData, final int TYPE_METHOD,String setContentType ) {
-
-		this ();
-		this.url = url;
-		this.requestData = requestData;
-		this.METHOD_TYPE = TYPE_METHOD;
-		this.setContentType = setContentType;
-
-		this.parseType = -1;
-		this.refreshData = null;
-
-		setIsRepeatRequest();
-	}
-
 
 	public HttpRequest(final String url, final String requestData, List<Header> header,final int TYPE_METHOD ) {
 
@@ -195,7 +166,7 @@ public class HttpRequest  {
 		this.parseType = -1;
 		this.refreshData = null;
 		setIsRepeatRequest();
-	}
+	}*/
 
 
 

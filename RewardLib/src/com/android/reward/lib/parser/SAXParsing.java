@@ -17,6 +17,21 @@ public class SAXParsing {
 	public static final int LOGIN_PARSER = 0;
 	public static final int REGISTER_PARSER = LOGIN_PARSER + 1;
 	public static final int FORGOT_PASSWORD_PARSER = REGISTER_PARSER + 1;
+	public static final int BANNER_PARSER = FORGOT_PASSWORD_PARSER + 1;
+	public static final int ACC_POINTS_PARSER = BANNER_PARSER + 1;
+	public static final int HIS_ORDER_PARSER = ACC_POINTS_PARSER + 1;
+	public static final int ORDER_DETAIL_PARSER = HIS_ORDER_PARSER + 1;
+	public static final int HIS_POINTS_PARSER = ORDER_DETAIL_PARSER + 1;
+	public static final int SHIPPING_ADDR_PARSER = HIS_POINTS_PARSER + 1;
+	public static final int BURN_PARSER = SHIPPING_ADDR_PARSER + 1;
+	public static final int EARN_PARSER = BURN_PARSER + 1;
+	public static final int SHOPPING_CAT_PARSER = EARN_PARSER + 1;
+	public static final int PRODUCT_PARSER = SHOPPING_CAT_PARSER + 1;
+	public static final int PRODUCT_SEARCH_PARSER = PRODUCT_PARSER + 1;
+	
+	
+	
+	
 
 
 
@@ -46,6 +61,11 @@ public class SAXParsing {
 			case FORGOT_PASSWORD_PARSER : baseParser = new BaseParser(); 
 			is.setCharacterStream(new StringReader( (( StringBuffer ) result).toString() ) );
 			saxParser.parse( is, baseParser );
+			break;
+			
+			case BANNER_PARSER : baseParser = new BannerParser(); 
+			is.setCharacterStream(new StringReader( (( StringBuffer ) result).toString() ) );
+			saxParser.parse( is, ( BannerParser ) baseParser );
 			break;
 
 			}
