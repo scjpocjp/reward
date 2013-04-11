@@ -17,7 +17,6 @@ public class SAXParsing {
 	public static final int LOGIN_PARSER = 0;
 	public static final int REGISTER_PARSER = LOGIN_PARSER + 1;
 	public static final int FORGOT_PASSWORD_PARSER = REGISTER_PARSER + 1;
-
 	public static final int BANNER_PARSER = FORGOT_PASSWORD_PARSER + 1;
 	public static final int ACC_POINTS_PARSER = BANNER_PARSER + 1;
 	public static final int HIS_ORDER_PARSER = ACC_POINTS_PARSER + 1;
@@ -29,12 +28,7 @@ public class SAXParsing {
 	public static final int SHOPPING_CAT_PARSER = EARN_PARSER + 1;
 	public static final int PRODUCT_PARSER = SHOPPING_CAT_PARSER + 1;
 	public static final int PRODUCT_SEARCH_PARSER = PRODUCT_PARSER + 1;
-	
-	
-	
-	
-
-	public static final int CHANGE_PASSWORD_PARSER = FORGOT_PASSWORD_PARSER + 1;
+	public static final int CHANGE_PASSWORD_PARSER = PRODUCT_SEARCH_PARSER + 1;
 
 
 
